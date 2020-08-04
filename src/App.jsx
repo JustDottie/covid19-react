@@ -77,9 +77,16 @@ function App() {
 
   return (
     <div className='app'>
-      <div className='app__left'>
-        <div className='app__header'>
-          <h1>COVID-19 Tracker</h1>
+      <div className='app__top'>
+        <div className='app__left'>
+          <Map
+            casesType={casesType}
+            countries={mapCountries}
+            center={mapCenter}
+            zoom={mapZoom}
+          />
+        </div>
+        <div className='app__right'>
           <FormControl className='app__dropdown'>
             <Select
               variant='outlined'
@@ -95,48 +102,53 @@ function App() {
               ))}
             </Select>
           </FormControl>
+          <div className='app__stats'>
+            <InfoBox
+              isRed
+              active={casesType === 'cases'}
+              onClick={(e) => setCasesType('cases')}
+              title='Coronavirus Cases'
+              cases={prettifyStat(countryInfo.todayCases)}
+              total={countryInfo.cases}
+            />
+            <InfoBox
+              active={casesType === 'recovered'}
+              onClick={(e) => setCasesType('recovered')}
+              title='Recovered'
+              cases={prettifyStat(countryInfo.todayRecovered)}
+              total={countryInfo.recovered}
+            />
+            <InfoBox
+              isRed
+              active={casesType === 'deaths'}
+              onClick={(e) => setCasesType('deaths')}
+              title='Deaths'
+              cases={prettifyStat(countryInfo.todayDeaths)}
+              total={countryInfo.deaths}
+            />
+          </div>
         </div>
-        <div className='app__stats'>
-          <InfoBox
-            isRed
-            active={casesType === 'cases'}
-            onClick={(e) => setCasesType('cases')}
-            title='Coronavirus Cases'
-            cases={prettifyStat(countryInfo.todayCases)}
-            total={countryInfo.cases}
-          />
-          <InfoBox
-            active={casesType === 'recovered'}
-            onClick={(e) => setCasesType('recovered')}
-            title='Recovered'
-            cases={prettifyStat(countryInfo.todayRecovered)}
-            total={countryInfo.recovered}
-          />
-          <InfoBox
-            isRed
-            active={casesType === 'deaths'}
-            onClick={(e) => setCasesType('deaths')}
-            title='Deaths'
-            cases={prettifyStat(countryInfo.todayDeaths)}
-            total={countryInfo.deaths}
-          />
-        </div>
-        <Map
-          casesType={casesType}
-          countries={mapCountries}
-          center={mapCenter}
-          zoom={mapZoom}
-        />
       </div>
-      <div className='app__right'>
-        <Card>
-          <CardContent>
-            <h3>Live Cases by Country</h3>
-            <Table countries={tableData} />
-            <h3 className='app__graphTitle'>Global daily new {casesType}</h3>
-            <LineGraph className='app__graph' casesType={casesType} />
-          </CardContent>
-        </Card>
+
+      <div className='app__bottom'>
+        <div className='app__bottom__left'>
+          <Card className='app__cards'>
+            <CardContent className='app__cards__graph'>
+              <h3 className='app__graphTitle'>
+                Global daily new {casesType} (last 120 days)
+              </h3>
+              <LineGraph className='app__graph' casesType={casesType} />
+            </CardContent>
+          </Card>
+        </div>
+        <div className='app__bottom__right'>
+          <Card>
+            <CardContent>
+              <h3>Total Cases by Country</h3>
+              <Table className='app__table' countries={tableData} />
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
