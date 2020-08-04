@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+}
+
+body {
+  background-color: turquoise;
+  width: 100vw;
+  height: 100vh;
+}
+
+.app {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+  overflow: hidden;
+}
+
+.app__left {
+  flex: 0.95;
+  height: 96.5vh;
+}
+
+.app__right {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 96.5vh;
+}
+
+.app__right .MuiCardContent-root {
+  display: flex;
+  flex-direction: column;
+}
+
+.app__graphTitle {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.app__graph {
+  flex-grow: 1;
+  height: 41vh;
+}
+
+.app__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.app__header h1 {
+  color: red;
+}
+
+.app__dropdown {
+  background-color: white;
+}
+
+.app__stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 990px) {
+  .app {
+    flex-direction: column;
+    overflow-y: visible;
+    overflow-y: hidden;
+  }
+}
+
+.map {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 15px;
+  box-shadow: 0 0 8px -4px rgba(0, 0, 0, 1);
+}
+
+.map .leaflet-container {
+  height: 69vh;
+}
+
+.table {
+  margin-top: 20px;
+  overflow-y: scroll;
+  height: 40vh;
+}
+
+.table tr {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table td {
+  padding: 0.4rem;
+}
+
+.table tr:nth-of-type(odd) {
+  background-color: lightgray;
+}
+
+.info {
+  width: 150px;
+}
+
+.info__flag {
+  height: 100px;
+  width: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.info__name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #555;
+}
+
+.info__cases,
+.info__recovered,
+.info__deaths {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.infoBox {
+  flex: 1;
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+  cursor: pointer;
+  height: 15vh;
+}
+
+.infoBox__cases {
+  color: red;
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.infoBox__recovered {
+  color: yellowgreen;
+}
+
+.infoBox__total {
+  color: grey;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  margin-top: 15px !important;
+}
+
+.infoBox--selected {
+  border-top: 10px solid greenyellow;
+  margin-top: -10px;
+}
+
+.infoBox--red {
+  border-color: red;
+}
+
+.infoBox--green {
+  border-color: greenyellow;
+}
